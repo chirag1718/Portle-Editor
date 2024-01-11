@@ -7,24 +7,26 @@ const blockRegex = (regex: RegExp, contentBlock: any, callback: any) => {
 };
 
 // ! FUNCTIONALLY WISE IT IS WORKING FINE but I tried looking for a solution for error but I was not able to find one!
-// ! NOTE: While rendering h1 to h6 in components is resulting is console warnings like: React does not recognize the `contentState, decoratedText,blockKey, entityKey, offsetKey` prop on a DOM element. If you intentionally want it to appear in the DOM as a custom attribute, spell it as lowercase `contentstate` instead. If you accidentally passed it from a parent component, remove it from the DOM element
+// ! NOTE: While rendering h1 to h6 with {...props} in components is resulting is console warnings like: React does not recognize the `contentState, decoratedText, blockKey, entityKey, offsetKey` prop on a DOM element. If you intentionally want it to appear in the DOM as a custom attribute, spell it as lowercase `contentstate` instead. If you accidentally passed it from a parent component, remove it from the DOM element
 // component: (props) => (
 // <h1 {...props} className=" text-green-500">
 //   {props.children}
 // </h1>
 
 const Decorator = new CompositeDecorator([
+  // heading
   {
     strategy: (contentBlock, callback) =>
       blockRegex(/^\# .+$/, contentBlock, callback),
-
     component: (props) => <span className="text-2xl">{props.children}</span>,
   },
+  // bold
   {
     strategy: (contentBlock, callback) =>
       blockRegex(/^\* .+$/, contentBlock, callback),
     component: (props) => <strong>{props.children}</strong>,
   },
+  // text color red
   {
     strategy: (contentBlock, callback) =>
       blockRegex(/^\*\* .+$/, contentBlock, callback),
@@ -32,6 +34,7 @@ const Decorator = new CompositeDecorator([
       <span className="text-red-500">{props.children}</span>
     ),
   },
+  // underline
   {
     strategy: (contentBlock, callback) =>
       blockRegex(/^\*\*\* .+$/, contentBlock, callback),

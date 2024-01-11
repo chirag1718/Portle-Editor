@@ -3,7 +3,7 @@
 @tailwind utilities;
 
 *::-webkit-scrollbar {
-  @apply bg-stone-700 w-2 rounded-md overflow-hidden;
+  @apply bg-stone-700 w-2 rounded-md ;
 }
 
 *::-webkit-scrollbar-thumb {
