@@ -7,7 +7,7 @@ const Editor = dynamic(() => import("@/app/components/Editor"), { ssr: false });
 const page = (props: EditorProps) => {
   return (
     <div className="flex flex-col items-center justify-center gap-5 h-full w-full p-5">
-      {/* header */}
+      {/* HEADER */}
       <div className="flex items-center justify-center h-14 min-h-14 w-full relative">
         {/*  TITLE */}
         <p>Demo Editor by Chirag</p>
