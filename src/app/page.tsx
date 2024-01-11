@@ -1,6 +1,6 @@
 import React from "react";
 import dynamic from "next/dynamic";
-import type { EditorProps } from "./components/Editor";
+import { EditorProps } from "./components/Editor";
 const Editor = dynamic(() => import("@/app/components/Editor"), { ssr: false });
 
 const page = (props: EditorProps) => {
