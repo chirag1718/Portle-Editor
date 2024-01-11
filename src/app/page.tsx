@@ -13,7 +13,7 @@ const page = (props: EditorProps) => {
         <p>Demo Editor by Chirag</p>
       </div>
       {/* EDITOR */}
-      <div className="h-full w-full border rounded overflow-hidden p-5 border-red-200">
+      <div className="h-full w-full border-2 rounded overflow-hidden p-5">
         <div className="h-full w-full overflow-auto">
           <Editor {...props} />
         </div>
