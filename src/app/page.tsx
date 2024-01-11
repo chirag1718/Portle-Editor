@@ -3,7 +3,7 @@ import dynamic from "next/dynamic";
 import { EditorProps } from "./components/Editor";
 const Editor = dynamic(() => import("@/app/components/Editor"), { ssr: false });
 
-const page = (props: EditorProps) => {
+const page = (props: any) => {
   return (
     <div className="flex flex-col items-center justify-center gap-5 h-full w-full p-5">
       {/* HEADER */}
