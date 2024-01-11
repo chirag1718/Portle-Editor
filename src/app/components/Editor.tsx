@@ -11,11 +11,11 @@ import Decorator from "./Decorator";
 import "draft-js/dist/Draft.css";
 
 // types for Editor Props
-export interface EditorProps {
+export type EditorProps = {
   initialValue?: string;
   onChange?: (value: string) => void;
   style?: React.CSSProperties;
-}
+};
 const CustomEditor: FC<EditorProps> = ({ initialValue, onChange, style }) => {
   const [editorState, setEditorState] = useState(() => {
     // if saved 💾 content is ✅ available than render that from local storage 🫙
