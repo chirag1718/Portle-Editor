@@ -1,4 +1,5 @@
 "use client";
+import React, { FC, useState } from "react";
 import {
   ContentState,
   Editor,
@@ -6,10 +7,10 @@ import {
   convertFromRaw,
   convertToRaw,
 } from "draft-js";
-import React, { FC, useEffect, useRef, useState } from "react";
 import Decorator from "./Decorator";
 import "draft-js/dist/Draft.css";
 
+// types for Editor Props
 export interface EditorProps {
   initialValue?: string;
   onChange?: (value: string) => void;
@@ -17,6 +18,7 @@ export interface EditorProps {
 }
 const CustomEditor: FC<EditorProps> = ({ initialValue, onChange, style }) => {
   const [editorState, setEditorState] = useState(() => {
+    // if saved 💾 content is ✅ available than render that from local storage 🫙
     const storedContent = localStorage.getItem("editorContent");
     if (storedContent) {
       const rawContent = JSON.parse(storedContent);
@@ -25,6 +27,7 @@ const CustomEditor: FC<EditorProps> = ({ initialValue, onChange, style }) => {
         Decorator
       );
     } else {
+      // if saved 💾 content is ❌ not available than render fresh editor
       return initialValue
         ? EditorState.createWithContent(
             ContentState.createFromText(initialValue),
@@ -33,6 +36,7 @@ const CustomEditor: FC<EditorProps> = ({ initialValue, onChange, style }) => {
         : EditorState.createEmpty(Decorator);
     }
   });
+  // this function here handles the change in editor
   const handleChange = (newEditorState: EditorState): void => {
     setEditorState(newEditorState);
     if (onChange) {
@@ -45,6 +49,7 @@ const CustomEditor: FC<EditorProps> = ({ initialValue, onChange, style }) => {
       );
     }
   };
+  // this function saves 💾 in local storage 🫙
   const handleSave = () => {
     const contentState = editorState.getCurrentContent();
     const rawContent = convertToRaw(contentState);
@@ -62,6 +67,7 @@ const CustomEditor: FC<EditorProps> = ({ initialValue, onChange, style }) => {
           <span>Save</span>
         </button>
       </div>
+      {/* EDITOR */}
       <Editor
         editorState={editorState}
         onChange={handleChange}
