@@ -14,16 +14,19 @@ const blockRegex = (regex: RegExp, contentBlock: any, callback: any) => {
 // </h1>
 
 const Decorator = new CompositeDecorator([
+  // heading
   {
     strategy: (contentBlock, callback) =>
       blockRegex(/^\# .+$/, contentBlock, callback),
     component: (props) => <span className="text-2xl">{props.children}</span>,
   },
+  // bold
   {
     strategy: (contentBlock, callback) =>
       blockRegex(/^\* .+$/, contentBlock, callback),
     component: (props) => <strong>{props.children}</strong>,
   },
+  // text color red
   {
     strategy: (contentBlock, callback) =>
       blockRegex(/^\*\* .+$/, contentBlock, callback),
@@ -31,6 +34,7 @@ const Decorator = new CompositeDecorator([
       <span className="text-red-500">{props.children}</span>
     ),
   },
+  // underline
   {
     strategy: (contentBlock, callback) =>
       blockRegex(/^\*\*\* .+$/, contentBlock, callback),
